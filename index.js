@@ -81,3 +81,23 @@ function clearCanvas() {
 };
 
 eraseButton.addEventListener('click', clearCanvas);
+
+
+
+
+
+
+// Function to toggle full screen mode
+function toggleFullScreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen(); // Request full screen
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen(); // Exit full screen
+    }
+  }
+}
+
+// Event listener to trigger full screen on a user interaction (e.g., button click)
+const appContainer = document.querySelector('.container'); // Replace with your app container
+appContainer.addEventListener('click', toggleFullScreen);

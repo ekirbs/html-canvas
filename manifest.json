@@ -1,0 +1,21 @@
+{
+  "name": "HTML Canvas Tool",
+  "short_name": "Canvas",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "https://fav.farm/🔥",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "orientation": "any",
+  "description": "Your app description here",
+  "scope": "/",
+  "prefer_related_applications": false,
+  "lang": "en-US",
+  "dir": "ltr"
+}
