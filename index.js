@@ -1,3 +1,4 @@
+// || CANVAS/CTX FUNCTIONALITY ||
 const canvas = document.querySelector('#draw');
 const ctx = canvas.getContext('2d');
 
@@ -26,19 +27,21 @@ function draw(e) {
   ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
   ctx.beginPath();
   ctx.moveTo(lastX, lastY);
-  // ctx.lineTo(e.offsetX, e.offsetY);
   ctx.lineTo(touchX, touchY);
+  // ctx.lineTo(e.offsetX, e.offsetY);
   ctx.stroke();
 
-  // update lastX and lastY
+  // || update lastX and lastY
   [lastX, lastY] = [touchX, touchY];
   // [lastX, lastY] = [e.offsetX, e.offsetY];
 
+  // || hue change across spectrum
   hue++;
   if(hue >= 360) {
     hue = 0;
   };
 
+  // || line width change from 0-100-0
   if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
     direction = !direction;
   }
@@ -49,8 +52,7 @@ function draw(e) {
   }
 };
 
-
-
+// || mouse/touchscreen event listeners (mousedown and touchstart )
 canvas.addEventListener('mousedown', (e) => {
   isDrawing = true;
   [lastX, lastY] = [e.offsetX, e.offsetY];
@@ -64,9 +66,18 @@ canvas.addEventListener('touchstart', (e) => {
   [lastX, lastY] = [e.touches[0].clientX - canvas.offsetLeft, e.touches[0].clientY - canvas.offsetTop];
   e.preventDefault();
 });
-
 canvas.addEventListener('touchmove', (e) => {
   draw(e);
   e.preventDefault();
 });
 canvas.addEventListener('touchend', () => isDrawing = false);
+
+
+// || ERASE BUTTON FUNCTIONALITY ||
+const eraseButton = document.querySelector('#erase');
+
+function clearCanvas() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+};
+
+eraseButton.addEventListener('click', clearCanvas);
