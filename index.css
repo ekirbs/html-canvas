@@ -1,7 +1,7 @@
 /* || GENERAL STYLE */
 html, body {
   margin: 0;
-  
+
   padding: 0;
   height: 100%;
   width: 100%;
@@ -26,7 +26,7 @@ html, body {
   text-transform: uppercase;
   bottom: 0;
   width: 80vw;
-  /* height: 10vh; */
+  height: 10vh;
   /* display: block; */
   position: absolute;
   left: 50%;
