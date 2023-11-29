@@ -1,4 +1,4 @@
-/* || GENERAL STYLE */
+/* || GENERAL STYLE || */
 html, body {
   margin: 0;
 
@@ -15,24 +15,7 @@ html, body {
   overflow: hidden;
 }
 
-/* || ERASE BUTTON */
-#erase {
-  margin: 10px;
-  padding: 20px;
-  border-radius: 15px;
-  background-color: salmon;
-  color: white;
-  font-size: 24px;
-  text-transform: uppercase;
-  bottom: 0;
-  width: 80vw;
-  height: 10vh;
-  /* display: block; */
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
+/* || BUTTONS || */
 #fullscreen {
   position: absolute;
   top: 10px;
@@ -43,7 +26,20 @@ html, body {
   cursor: pointer;
   height: 10vh;
   width: 10vh;
-  z-index: 9999; /* Ensure the button appears on top */
+  z-index: 9999;
+}
+
+#options {
+  position: absolute;
+  top: 11vh;
+  right: 10px;
+  padding: 10px;
+  background-color: #ccc;
+  border: none;
+  cursor: pointer;
+  height: 10vh;
+  width: 10vh;
+  z-index: 9999;
 }
 
 #screenshot {
@@ -56,5 +52,24 @@ html, body {
   cursor: pointer;
   height: 10vh;
   width: 10vh;
-  z-index: 9999; /* Ensure the button appears on top */
+  z-index: 9999;
+}
+
+#erase {
+  margin: 10px;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: salmon;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  text-transform: uppercase;
+  bottom: 0;
+  width: 80vw;
+  height: 10vh;
+  /* display: block; */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
 }

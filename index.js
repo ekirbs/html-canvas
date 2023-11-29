@@ -72,59 +72,63 @@ canvas.addEventListener('touchmove', (e) => {
 });
 canvas.addEventListener('touchend', () => isDrawing = false);
 
+// || TOGGLE FULLSCREEN MODE ||  this is having unintended effects on the ctx and it's not resizing
+const fullscreenBtn = document.getElementById('fullscreen');
 
-// || ERASE BUTTON FUNCTIONALITY ||
-const eraseButton = document.querySelector('#erase');
-
-function clearCanvas() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-};
-
-eraseButton.addEventListener('click', clearCanvas);
-
-
-
-// || toggle full screen mode
 function toggleFullScreen() {
   const elem = document.documentElement;
 
   if (!document.fullscreenElement) {
     if (elem.requestFullscreen) {
-      elem.requestFullscreen(); // Request full screen
+      elem.requestFullscreen();
     } else if (elem.webkitRequestFullscreen) {
-      elem.webkitRequestFullscreen(); // For Safari and other WebKit-based browsers
+      elem.webkitRequestFullscreen();
     }
-
-    // Hide the "Take Screenshot" and "Erase" buttons when exiting fullscreen
-    document.getElementById('screenshot').style.display = 'none';
-    document.getElementById('erase').style.display = 'none';
   } else {
     if (document.exitFullscreen) {
-      document.exitFullscreen(); // Exit full screen
+      document.exitFullscreen();
     } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen(); // For Safari and other WebKit-based browsers
+      document.webkitExitFullscreen();
     }
-
-    // Show the "Take Screenshot" and "Erase" buttons
-    document.getElementById('screenshot').style.display = 'inline-block';
-    document.getElementById('erase').style.display = 'inline-block';
   }
-}
+  resizeCanvas();
+};
 
-// Event listener to trigger full screen on a user interaction (e.g., button click)
-const fullscreenButton = document.getElementById('fullscreen');
-fullscreenButton.addEventListener('click', toggleFullScreen);
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+};
 
+fullscreenBtn.addEventListener('click', toggleFullScreen);
 
+// || TOGGLE OPTIONS MODE ||
+const optionsBtn = document.getElementById('options');
+const screenshotBtn = document.getElementById('screenshot');
+const eraseBtn = document.getElementById('erase');
 
-// || Take a screenshot of the canvas and download it
+screenshotBtn.style.display = 'none';
+eraseBtn.style.display = 'none';
+
+function toggleOptions() {
+  if(screenshotBtn.style.display === 'none') {
+    screenshotBtn.style.display = 'inline-block';
+    eraseBtn.style.display = 'inline-block';
+  } else {
+    screenshotBtn.style.display = 'none';
+    eraseBtn.style.display = 'none';
+  }
+};
+
+optionsBtn.addEventListener('click', toggleOptions);
+
+// || CANVAS SCREENSHOT ||
 function takeScreenshot() {
-  const dataURL = canvas.toDataURL('image/png'); // Convert canvas content to a data URL
+  const dataURL = canvas.toDataURL('image/png');
   
   // Create an <a> element and set its attributes
   const link = document.createElement('a');
   link.href = dataURL;
-  link.download = 'screenshot.png'; // Set the file name
+  link.download = 'doodle.png'; // Set the file name
 
   // Simulate a click on the link to trigger the download
   document.body.appendChild(link);
@@ -132,8 +136,13 @@ function takeScreenshot() {
 
   // Clean up the <a> element
   document.body.removeChild(link);
-}
+};
 
-// Event listener for the "Take Screenshot" button
-const screenshotButton = document.getElementById('screenshot');
-screenshotButton.addEventListener('click', takeScreenshot);
+screenshotBtn.addEventListener('click', takeScreenshot);
+
+// || ERASE BUTTON ||
+function clearCanvas() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+};
+
+eraseBtn.addEventListener('click', clearCanvas);
