@@ -84,16 +84,21 @@ eraseButton.addEventListener('click', clearCanvas);
 
 
 
-
-
-
-// Function to toggle full screen mode
+// || toggle full screen mode
 function toggleFullScreen() {
+  const elem = document.documentElement;
+
   if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen(); // Request full screen
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen(); // Request full screen
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen(); // For Safari and other WebKit-based browsers
+    }
   } else {
     if (document.exitFullscreen) {
       document.exitFullscreen(); // Exit full screen
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen(); // For Safari and other WebKit-based browsers
     }
   }
 }
@@ -101,3 +106,21 @@ function toggleFullScreen() {
 // Event listener to trigger full screen on a user interaction (e.g., button click)
 const appContainer = document.querySelector('.container'); // Replace with your app container
 appContainer.addEventListener('click', toggleFullScreen);
+
+
+
+
+// // Function to toggle full screen mode
+// function toggleFullScreen() {
+//   if (!document.fullscreenElement) {
+//     document.documentElement.requestFullscreen(); // Request full screen
+//   } else {
+//     if (document.exitFullscreen) {
+//       document.exitFullscreen(); // Exit full screen
+//     }
+//   }
+// }
+
+// // Event listener to trigger full screen on a user interaction (e.g., button click)
+// const appContainer = document.querySelector('.container'); // Replace with your app container
+// appContainer.addEventListener('click', toggleFullScreen);
