@@ -94,15 +94,46 @@ function toggleFullScreen() {
     } else if (elem.webkitRequestFullscreen) {
       elem.webkitRequestFullscreen(); // For Safari and other WebKit-based browsers
     }
+
+    // Hide the "Take Screenshot" and "Erase" buttons when exiting fullscreen
+    document.getElementById('screenshot').style.display = 'none';
+    document.getElementById('erase').style.display = 'none';
   } else {
     if (document.exitFullscreen) {
       document.exitFullscreen(); // Exit full screen
     } else if (document.webkitExitFullscreen) {
       document.webkitExitFullscreen(); // For Safari and other WebKit-based browsers
     }
+
+    // Show the "Take Screenshot" and "Erase" buttons
+    document.getElementById('screenshot').style.display = 'inline-block';
+    document.getElementById('erase').style.display = 'inline-block';
   }
 }
 
 // Event listener to trigger full screen on a user interaction (e.g., button click)
 const fullscreenButton = document.getElementById('fullscreen');
 fullscreenButton.addEventListener('click', toggleFullScreen);
+
+
+
+// || Take a screenshot of the canvas and download it
+function takeScreenshot() {
+  const dataURL = canvas.toDataURL('image/png'); // Convert canvas content to a data URL
+  
+  // Create an <a> element and set its attributes
+  const link = document.createElement('a');
+  link.href = dataURL;
+  link.download = 'screenshot.png'; // Set the file name
+
+  // Simulate a click on the link to trigger the download
+  document.body.appendChild(link);
+  link.click();
+
+  // Clean up the <a> element
+  document.body.removeChild(link);
+}
+
+// Event listener for the "Take Screenshot" button
+const screenshotButton = document.getElementById('screenshot');
+screenshotButton.addEventListener('click', takeScreenshot);
