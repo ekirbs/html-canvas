@@ -4,7 +4,10 @@ An HTML canvas program built with my nephew in mind.  Base MVP is a drawing tool
 
 # Development Map
 
-Will next be adding an options tab to choose colors either from a set list or from a color wheel, as well as set line width.  Also add a big ERASE button.  Need a proper readme soon too...
+ - An options tab to choose colors either from a set list or from a color wheel, as well as set line width.
+ - A big ERASE button.
+ - A database and save function for pictures...
+ - Need a proper readme soon too...
 
 # Thanks
 
